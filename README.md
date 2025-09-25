@@ -1,5 +1,5 @@
-# docker-setup-template
-A template for docker setup file repos
+#docker-insy
+Docker container setup files for InSy
 
 ## Setup
 1. Clone the repository
