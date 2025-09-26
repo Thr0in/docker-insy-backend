@@ -14,12 +14,15 @@ services:
     env_file:
       - path: .env
         required: true
+    volumes:
+      - ./postgres-data:/var/lib/postgresql
     networks:
       - internal
 
   backend:
     container_name: insy-backend
-    image: "ghcr.io/thr0in/insy-backend:${CONFIG}-latest"
+    image: "ghcr.io/kr1pt0n05/insy-backend:${CONFIG}-latest"
+    restart: unless-stopped
     env_file:
       - path: .env
         required: true
