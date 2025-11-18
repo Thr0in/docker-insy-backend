@@ -28,10 +28,11 @@ services:
         required: true
     environment:
       SPRING_DATASOURCE_URL: "jdbc:postgresql://insy-postgres:5432/${POSTGRES_DB}"
+      SERVER_SERVLET_CONTEXT_PATH: "${API_PREFIX}"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.$APP_NAME.entrypoints=websecure"
-      - "traefik.http.routers.$APP_NAME.rule=Host(`$APP_URL`)"
+      - "traefik.http.routers.$APP_NAME.rule=(Host(`$APP_URL`) && ApiPrefix(`${API_PREFIX}`))"
       - "traefik.http.routers.$APP_NAME.tls.certresolver=letsencrypt"
       - "traefik.http.services.$APP_NAME.loadbalancer.server.port=${PORT}"
     networks:
